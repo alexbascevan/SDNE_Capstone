@@ -61,7 +61,7 @@ git config --global user.name "Your Name"
 mkdir Capstone
 cd Capstone
 git init
-git pull https://github.com/alexbascevan/RAP-Detector.git
+git pull https://github.com/alexbascevan/SDNE_Capstone.git
 
 # Update file databases
 sudo updatedb
