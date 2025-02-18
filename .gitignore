@@ -1,0 +1,58 @@
+# Ignore all .txt files
+*.txt
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore build artifacts
+/dist/
+/build/
+/out/
+
+# Ignore editor and IDE files
+*.log
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.cache
+*.vscode/
+*.idea/
+
+# Ignore OS generated files
+Thumbs.db
+.DS_Store
+._*
+
+# Ignore package-lock and yarn-lock if not needed
+package-lock.json
+yarn.lock
+
+# Python-specific ignores
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.pytest_cache/
+*.tox/
+*.coverage
+.coverage.*
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore virtual environments
+venv/
+.env/
+env/
+
