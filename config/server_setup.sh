@@ -72,3 +72,15 @@ sudo reboot now
 # Confirm Monitor Mode is active after reboot
 
 iw dev wlxcc641aeb88ac info
+
+
+# If having errors with script setting wifi adapter to monitor mode, run these manually. Be sure to update the adapter name to your specific adapter.
+# Bring the interface down
+sudo ip link set wlxcc641aeb88ac down
+
+# Set the interface to monitor mode
+sudo iw dev wlxcc641aeb88ac set type monitor
+
+# Bring the interface up
+sudo ip link set wlxcc641aeb88ac up
+
