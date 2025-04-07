@@ -38,6 +38,20 @@ def save_alert_data():
     with open(alert_file, "w") as f:
         json.dump(alerts, f, indent=4)
 
+def load_whitelist(file_path):
+    """Load whitelist entries from a file, one per line in the format 'ESSID,BSSID'."""
+    whitelist = []
+    try:
+        with open(file_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    whitelist.append(line)
+    except Exception as e:
+        print(f"Error reading whitelist file: {e}")
+    return whitelist
+
+
 def parse_rsn(rsn_ie):
     """
     Parse the RSN Information Element (IE) found in beacon frames (ID 48).
