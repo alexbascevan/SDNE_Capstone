@@ -1,6 +1,6 @@
 # Copy 1 line at a time  
 # Make sure network adapter is in before running
-# Your network adapter may not be "wlxcc641aeb88ac", after running line 17, type "ip a" and use the adapter name below "wlan0"
+# Your network adapter may not be "<adapter name>", after running line 17, type "ip a" and use the adapter name below, ex."wlan0"
 # Input your info at the end for github
 # iperf3 & wireshark will bring up pink prompt, select "NO" for both
 
@@ -11,22 +11,22 @@ sudo systemctl enable ssh
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
 
 # Install required packages
-sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-scapy python3-numpy python3-flask python3-requests net-tools wireshark tcpdump iperf3 wireless-tools hostapd nmap glances zsh neofetch neovim locate
+sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools hostapd zsh neofetch locate python3-pip sqlite3 
 
 # Install BrosTrend Wi-Fi adapter driver
 sh -c 'wget linux.brostrend.com/install -O /tmp/install && sh /tmp/install'
 
 # Bring up the network interface and assign static IP
-sudo ip link set wlxcc641aeb88ac up  
-sudo ip addr add 192.168.1.100/24 dev wlxcc641aeb88ac
-sudo ip link set wlxcc641aeb88ac down
+sudo ip link set <adapter name> up  
+sudo ip addr add 192.168.1.100/24 dev <adapter name>
+sudo ip link set <adapter name> down
 
 # Configure static IP in dhcpcd.conf
-echo -e "\n# Static IP configuration for interface wlxcc641aeb88ac\ninterface wlxcc641aeb88ac\nstatic ip_address=192.168.1.100/24\nstatic routers=192.168.1.1\nstatic domain_name_servers=8.8.8.8 8.8.4.4" | sudo tee -a /etc/dhcpcd.conf > /dev/null
+echo -e "\n# Static IP configuration for interface <adapter name>\ninterface <adapter name>\nstatic ip_address=192.168.1.100/24\nstatic routers=192.168.1.1\nstatic domain_name_servers=8.8.8.8 8.8.4.4" | sudo tee -a /etc/dhcpcd.conf > /dev/null
 sudo systemctl restart dhcpcd
 
 # Create systemd service to set Wi-Fi adapter to monitor mode
-echo -e "[Unit]\nDescription=Set Wi-Fi adapter to monitor mode\nAfter=network.target\n\n[Service]\nType=oneshot\nExecStartPre=/bin/sleep 5\nExecStartPre=/sbin/ip link set wlxcc641aeb88ac down\nExecStartPre=/bin/sleep 2\nExecStartPre=/usr/sbin/iw dev wlxcc641aeb88ac set type monitor\nExecStart=/sbin/ip link set wlxcc641aeb88ac up\nRemainAfterExit=yes\n\n[Install]\nWantedBy=multi-user.target" | sudo tee /etc/systemd/system/wifi-monitor.service > /dev/null
+echo -e "[Unit]\nDescription=Set Wi-Fi adapter to monitor mode\nAfter=network.target\n\n[Service]\nType=oneshot\nExecStartPre=/bin/sleep 5\nExecStartPre=/sbin/ip link set <adapter name> down\nExecStartPre=/bin/sleep 2\nExecStartPre=/usr/sbin/iw dev <adapter name> set type monitor\nExecStart=/sbin/ip link set <adapter name> up\nRemainAfterExit=yes\n\n[Install]\nWantedBy=multi-user.target" | sudo tee /etc/systemd/system/wifi-monitor.service > /dev/null
 
 # Reload systemd and enable the wifi-monitor service
 sudo systemctl daemon-reload
@@ -34,7 +34,7 @@ sudo systemctl enable wifi-monitor.service
 sudo systemctl start wifi-monitor.service
 
 # Confirm Monitor Mode is active
-iw dev wlxcc641aeb88ac info
+iw dev <adapter name> info
 
 # Install Oh My Zsh and plugins
 sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
@@ -71,16 +71,16 @@ sudo reboot now
 
 # Confirm Monitor Mode is active after reboot
 
-iw dev wlxcc641aeb88ac info
+iw dev <adapter name> info
 
 
 # If having errors with script setting wifi adapter to monitor mode, run these manually. Be sure to update the adapter name to your specific adapter.
 # Bring the interface down
-sudo ip link set wlxcc641aeb88ac down
+sudo ip link set <adapter name> down
 
 # Set the interface to monitor mode
-sudo iw dev wlxcc641aeb88ac set type monitor
+sudo iw dev <adapter name> set type monitor
 
 # Bring the interface up
-sudo ip link set wlxcc641aeb88ac up
+sudo ip link set <adapter name> up
 
