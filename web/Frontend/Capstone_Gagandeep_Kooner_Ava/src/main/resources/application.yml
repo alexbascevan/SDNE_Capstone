@@ -1,0 +1,34 @@
+# src/main/resources/application.yml
+server:
+  port: 8080
+
+flask:
+  api:
+    base-url: http://127.0.0.1:5000  # Your Raspberry Pi's IP and Flask port
+
+# run    ng serve --proxy-config proxy-conf.json      from the src/main/capstone-frontend directory
+
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:/home/alexb/SDNE_Capstone/db/wifi_scanner.db  # Full path to your SQLite DB
+  jpa:
+    hibernate:
+      ddl-auto: none                 # Don't modify schema automatically
+    show-sql: true                   # Show SQL in logs for debugging
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLiteDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+
+         

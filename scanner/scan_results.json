@@ -1,0 +1,1199 @@
+{
+    "54:22:e0:13:b4:58": {
+        "essid": "The Fort 2.0",
+        "bssid": "54:22:e0:13:b4:58",
+        "pwr": [
+            -62,
+            -66,
+            -78,
+            -64,
+            -88,
+            -68,
+            -84,
+            -76,
+            -82,
+            -70,
+            -72,
+            -80,
+            -60,
+            -86,
+            -74,
+            -58,
+            -90,
+            -94,
+            -96,
+            -92,
+            -56,
+            -48
+        ],
+        "beacons": 8935,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "54:22:e0:14:09:18": {
+        "essid": "BELL860",
+        "bssid": "54:22:e0:14:09:18",
+        "pwr": [
+            -54,
+            -80,
+            -56,
+            -58,
+            -76,
+            -86,
+            -84,
+            -52,
+            -66,
+            -78,
+            -88,
+            -68,
+            -50,
+            -74,
+            -90,
+            -82,
+            -60,
+            -92,
+            -94,
+            -64,
+            -96,
+            -62,
+            -48,
+            -72
+        ],
+        "beacons": 12538,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "54:22:e0:f3:ac:88": {
+        "essid": "Potato Kingdom",
+        "bssid": "54:22:e0:f3:ac:88",
+        "pwr": [
+            -82,
+            -64,
+            -66,
+            -62,
+            -84,
+            -78,
+            -76,
+            -80,
+            -74,
+            -72,
+            -60,
+            -86,
+            -70,
+            -68,
+            -88,
+            -92,
+            -96,
+            -90,
+            -98
+        ],
+        "beacons": 9212,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "78:8d:af:51:a7:c6": {
+        "essid": "BELL395",
+        "bssid": "78:8d:af:51:a7:c6",
+        "pwr": [
+            -76,
+            -78,
+            -82,
+            -80,
+            -72,
+            -74,
+            -84,
+            -92,
+            -94,
+            -88,
+            -90,
+            -68,
+            -70,
+            -86,
+            -96,
+            -66,
+            -98,
+            -106,
+            -100
+        ],
+        "beacons": 7033,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "34:5d:9e:f5:99:86": {
+        "essid": "BELL010",
+        "bssid": "34:5d:9e:f5:99:86",
+        "pwr": [
+            -96,
+            -94,
+            -78,
+            -76,
+            -74,
+            -80,
+            -90,
+            -82,
+            -84,
+            -72,
+            -86,
+            -88,
+            -92,
+            -70,
+            -100,
+            -68
+        ],
+        "beacons": 5599,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0c:ac:8a:b6:f4:fb": {
+        "essid": "DDSR-Home",
+        "bssid": "0c:ac:8a:b6:f4:fb",
+        "pwr": [
+            -76,
+            -72,
+            -74,
+            -70,
+            -78,
+            -68,
+            -80,
+            -82,
+            -88,
+            -84,
+            -92,
+            -86,
+            -66,
+            -96,
+            -90,
+            -94
+        ],
+        "beacons": 7484,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "a8:5e:45:1e:ea:80": {
+        "essid": "RT-AC1200_80_2G",
+        "bssid": "a8:5e:45:1e:ea:80",
+        "pwr": [
+            -82,
+            -78,
+            -80,
+            -84,
+            -86,
+            -74,
+            -76,
+            -96,
+            -70,
+            -88,
+            -90,
+            -68,
+            -92,
+            -94,
+            -100,
+            -58,
+            -72
+        ],
+        "beacons": 3416,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0c:ac:8a:79:ae:cf": {
+        "essid": "BELL856",
+        "bssid": "0c:ac:8a:79:ae:cf",
+        "pwr": [
+            -46,
+            -44,
+            -48,
+            -82,
+            -76,
+            -42,
+            -86,
+            -84,
+            -78,
+            -80,
+            -88,
+            -74,
+            -96,
+            -66,
+            -90,
+            -92,
+            -106,
+            -50,
+            -52,
+            -54,
+            -62,
+            -40,
+            -94,
+            -100,
+            -102,
+            -68,
+            -72
+        ],
+        "beacons": 13672,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "ac:3b:77:a9:f2:96": {
+        "essid": "BELL222",
+        "bssid": "ac:3b:77:a9:f2:96",
+        "pwr": [
+            -80,
+            -78,
+            -84,
+            -82,
+            -96,
+            -92,
+            -76,
+            -88,
+            -86,
+            -90,
+            -94,
+            -74,
+            -70,
+            -72,
+            -98,
+            -68
+        ],
+        "beacons": 5404,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "b8:d9:4d:f2:65:8e": {
+        "essid": "BELL755",
+        "bssid": "b8:d9:4d:f2:65:8e",
+        "pwr": [
+            -78,
+            -84,
+            -76,
+            -82,
+            -80,
+            -94,
+            -74,
+            -86,
+            -92,
+            -88,
+            -90,
+            -72,
+            -96,
+            -70,
+            -68,
+            -102,
+            -66
+        ],
+        "beacons": 7433,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "78:8d:af:26:13:72": {
+        "essid": "LYONS",
+        "bssid": "78:8d:af:26:13:72",
+        "pwr": [
+            -82,
+            -84,
+            -80,
+            -86,
+            -88,
+            -96,
+            -78,
+            -70,
+            -74
+        ],
+        "beacons": 575,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "48:29:52:fd:9f:06": {
+        "essid": "BELL326",
+        "bssid": "48:29:52:fd:9f:06",
+        "pwr": [
+            -80,
+            -78,
+            -82,
+            -84,
+            -96,
+            -86,
+            -76,
+            -90,
+            -74,
+            -92,
+            -68,
+            -88,
+            -94,
+            -70
+        ],
+        "beacons": 4414,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "ac:84:c9:f3:ed:c6": {
+        "essid": "BELL130",
+        "bssid": "ac:84:c9:f3:ed:c6",
+        "pwr": [
+            -78,
+            -80,
+            -90,
+            -76,
+            -82,
+            -72,
+            -84,
+            -86,
+            -88,
+            -96,
+            -74,
+            -92,
+            -94,
+            -70,
+            -68
+        ],
+        "beacons": 2083,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0e:ac:8a:b6:f4:fe": {
+        "essid": "<Hidden>",
+        "bssid": "0e:ac:8a:b6:f4:fe",
+        "pwr": [
+            -76,
+            -80,
+            -74,
+            -78,
+            -82,
+            -72,
+            -86,
+            -84,
+            -70,
+            -68,
+            -88,
+            -94,
+            -90,
+            -92,
+            -96,
+            -66,
+            -64,
+            -62
+        ],
+        "beacons": 10312,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "48:29:52:fd:9d:7e": {
+        "essid": "BELL347",
+        "bssid": "48:29:52:fd:9d:7e",
+        "pwr": [
+            -80,
+            -84,
+            -82,
+            -86,
+            -78,
+            -74,
+            -96,
+            -92,
+            -88,
+            -76,
+            -94,
+            -72,
+            -100,
+            -90
+        ],
+        "beacons": 2803,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "78:8d:af:33:df:d4": {
+        "essid": "BELL767",
+        "bssid": "78:8d:af:33:df:d4",
+        "pwr": [
+            -80,
+            -78,
+            -82,
+            -88,
+            -84,
+            -76,
+            -92,
+            -96,
+            -94,
+            -86,
+            -74,
+            -90,
+            -68,
+            -72
+        ],
+        "beacons": 7613,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "d0:6d:c9:4b:3c:85": {
+        "essid": "Respira",
+        "bssid": "d0:6d:c9:4b:3c:85",
+        "pwr": [
+            -78,
+            -80,
+            -82,
+            -84,
+            -76,
+            -92,
+            -96,
+            -86,
+            -88,
+            -90,
+            -74,
+            -72,
+            -94,
+            -68,
+            -100,
+            -98,
+            -70
+        ],
+        "beacons": 2496,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "90:aa:c3:b5:6c:18": {
+        "essid": "COGECO-56C10",
+        "bssid": "90:aa:c3:b5:6c:18",
+        "pwr": [
+            -82,
+            -84,
+            -86,
+            -78,
+            -80,
+            -76,
+            -92,
+            -90,
+            -88,
+            -96
+        ],
+        "beacons": 536,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "38:e1:f4:31:60:05": {
+        "essid": "COGECO-316000",
+        "bssid": "38:e1:f4:31:60:05",
+        "pwr": [
+            -82,
+            -84,
+            -80,
+            -78,
+            -86,
+            -96,
+            -92,
+            -76,
+            -94,
+            -68,
+            -88,
+            -70,
+            -90,
+            -102,
+            -72
+        ],
+        "beacons": 1864,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "18:90:d8:dc:6b:3e": {
+        "essid": "BELL566",
+        "bssid": "18:90:d8:dc:6b:3e",
+        "pwr": [
+            -80,
+            -78,
+            -82,
+            -84,
+            -96,
+            -88,
+            -92,
+            -76,
+            -94,
+            -90,
+            -86,
+            -74,
+            -72
+        ],
+        "beacons": 3121,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0c:ac:8a:ea:c2:9f": {
+        "essid": "GandL",
+        "bssid": "0c:ac:8a:ea:c2:9f",
+        "pwr": [
+            -78,
+            -80,
+            -82,
+            -96,
+            -74,
+            -76,
+            -84,
+            -94,
+            -88,
+            -92,
+            -90,
+            -72,
+            -86
+        ],
+        "beacons": 2514,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "70:0b:01:e7:30:5e": {
+        "essid": "BELL943",
+        "bssid": "70:0b:01:e7:30:5e",
+        "pwr": [
+            -78,
+            -80,
+            -82,
+            -76,
+            -84,
+            -90,
+            -74,
+            -92,
+            -88,
+            -96,
+            -94,
+            -86,
+            -72
+        ],
+        "beacons": 1950,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "f0:72:ea:54:6a:ea": {
+        "essid": "tonkatoy",
+        "bssid": "f0:72:ea:54:6a:ea",
+        "pwr": [
+            -86,
+            -84,
+            -82,
+            -80,
+            -78,
+            -96,
+            -76,
+            -88,
+            -74,
+            -92,
+            -94,
+            -90,
+            -72
+        ],
+        "beacons": 970,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "54:22:e0:55:3f:68": {
+        "essid": "Cogeco 378",
+        "bssid": "54:22:e0:55:3f:68",
+        "pwr": [
+            -84,
+            -86,
+            -82,
+            -88,
+            -74,
+            -104,
+            -80,
+            -76,
+            -92,
+            -78
+        ],
+        "beacons": 305,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0e:ac:8a:a5:14:b4": {
+        "essid": "<Hidden>",
+        "bssid": "0e:ac:8a:a5:14:b4",
+        "pwr": [
+            -80,
+            -82,
+            -78,
+            -84,
+            -74,
+            -86,
+            -96,
+            -88,
+            -94,
+            -92,
+            -76
+        ],
+        "beacons": 771,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "a6:aa:c3:b5:6c:18": {
+        "essid": "<Hidden>",
+        "bssid": "a6:aa:c3:b5:6c:18",
+        "pwr": [
+            -82,
+            -86,
+            -84,
+            -88
+        ],
+        "beacons": 11,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "2c:79:d7:00:06:16": {
+        "essid": "BELL670",
+        "bssid": "2c:79:d7:00:06:16",
+        "pwr": [
+            -82,
+            -80,
+            -78,
+            -86,
+            -84,
+            -74,
+            -92,
+            -88,
+            -96,
+            -90,
+            -76,
+            -94,
+            -72
+        ],
+        "beacons": 1948,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "3c:84:6a:e4:93:cb": {
+        "essid": "BELL768_2.4GEXT",
+        "bssid": "3c:84:6a:e4:93:cb",
+        "pwr": [
+            -86,
+            -82,
+            -88,
+            -84,
+            -80
+        ],
+        "beacons": 20,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "TKIP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "78:98:e8:4d:1b:48": {
+        "essid": "dlink-1B47",
+        "bssid": "78:98:e8:4d:1b:48",
+        "pwr": [
+            -76,
+            -80,
+            -86,
+            -78,
+            -84,
+            -74,
+            -92
+        ],
+        "beacons": 27,
+        "data": 0,
+        "channel": [
+            3
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "TKIP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "32:6a:81:d2:ab:ae": {
+        "essid": "BELL094",
+        "bssid": "32:6a:81:d2:ab:ae",
+        "pwr": [
+            -86,
+            -84
+        ],
+        "beacons": 3,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "00:23:6a:fb:0a:a8": {
+        "essid": "EGYCAN",
+        "bssid": "00:23:6a:fb:0a:a8",
+        "pwr": [
+            -82,
+            -80,
+            -86,
+            -84,
+            -92,
+            -88,
+            -78,
+            -96
+        ],
+        "beacons": 324,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0c:ac:8a:a5:14:b1": {
+        "essid": "BELL702",
+        "bssid": "0c:ac:8a:a5:14:b1",
+        "pwr": [
+            -80,
+            -82,
+            -84,
+            -96,
+            -78,
+            -86,
+            -76,
+            -88,
+            -92
+        ],
+        "beacons": 707,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "c0:3c:04:19:1d:2a": {
+        "essid": "BELL996",
+        "bssid": "c0:3c:04:19:1d:2a",
+        "pwr": [
+            -86,
+            -82,
+            -80,
+            -84,
+            -78,
+            -88
+        ],
+        "beacons": 76,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "3c:17:10:27:33:fe": {
+        "essid": "BELL263",
+        "bssid": "3c:17:10:27:33:fe",
+        "pwr": [
+            -86,
+            -92,
+            -88,
+            -90
+        ],
+        "beacons": 20,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "84:a1:d1:58:cd:06": {
+        "essid": "BELL044",
+        "bssid": "84:a1:d1:58:cd:06",
+        "pwr": [
+            -86,
+            -82,
+            -88,
+            -84
+        ],
+        "beacons": 55,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "48:29:52:fd:9e:8e": {
+        "essid": "BELL633",
+        "bssid": "48:29:52:fd:9e:8e",
+        "pwr": [
+            -86,
+            -88,
+            -82,
+            -92,
+            -84
+        ],
+        "beacons": 20,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "ac:84:c9:fd:b5:36": {
+        "essid": "BELL343",
+        "bssid": "ac:84:c9:fd:b5:36",
+        "pwr": [
+            -84,
+            -82,
+            -86,
+            -90,
+            -88
+        ],
+        "beacons": 11,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "92:1e:a3:75:1d:74": {
+        "essid": "<Hidden>",
+        "bssid": "92:1e:a3:75:1d:74",
+        "pwr": [
+            -88,
+            -86,
+            -84,
+            -82,
+            -98,
+            -92
+        ],
+        "beacons": 12,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "8a:1e:a3:75:1d:74": {
+        "essid": "<Hidden>",
+        "bssid": "8a:1e:a3:75:1d:74",
+        "pwr": [
+            -84,
+            -88,
+            -82,
+            -86,
+            -90
+        ],
+        "beacons": 22,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "b8:3a:9d:32:ba:5b": {
+        "essid": "SmartGateway_BA5A",
+        "bssid": "b8:3a:9d:32:ba:5b",
+        "pwr": [
+            -88,
+            -92,
+            -84
+        ],
+        "beacons": 5,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "0c:ac:8a:b9:b3:67": {
+        "essid": "CHAN",
+        "bssid": "0c:ac:8a:b9:b3:67",
+        "pwr": [
+            -86,
+            -88
+        ],
+        "beacons": 4,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "8e:1e:a3:75:1d:74": {
+        "essid": "HASSAN",
+        "bssid": "8e:1e:a3:75:1d:74",
+        "pwr": [
+            -86,
+            -84,
+            -94,
+            -100
+        ],
+        "beacons": 5,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "28:87:ba:05:3a:42": {
+        "essid": "Event Horizon_EXT",
+        "bssid": "28:87:ba:05:3a:42",
+        "pwr": [
+            -76,
+            -82,
+            -80,
+            -84,
+            -86,
+            -78,
+            -90
+        ],
+        "beacons": 17,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    },
+    "d8:a7:56:08:98:6e": {
+        "essid": "BELL021",
+        "bssid": "d8:a7:56:08:98:6e",
+        "pwr": [
+            -88,
+            -86
+        ],
+        "beacons": 5,
+        "data": 0,
+        "channel": [
+            1
+        ],
+        "mb": "N/A",
+        "enc": "WPA2",
+        "cipher": "CCMP",
+        "auth": "PSK",
+        "pmf": "No"
+    }
+}

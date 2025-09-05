@@ -1,0 +1,82 @@
+
+<div class="dashboard-container">
+  <div class="stats-row">
+    <mat-card class="stat-card">
+      <mat-card-title>Total Scans</mat-card-title>
+      <mat-card-content>
+        <h1>{{ scanCount }}</h1>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-title>Total Alerts</mat-card-title>
+      <mat-card-content>
+        <h1>{{ alertCount }}</h1>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="recent-data-row">
+    <mat-card class="data-card">
+      <mat-card-title>Recent Scans</mat-card-title>
+      <mat-card-content>
+        <table mat-table [dataSource]="recentScans" class="mat-elevation-z8">
+          <!-- ESSID Column -->
+          <ng-container matColumnDef="essid">
+            <th mat-header-cell *matHeaderCellDef>SSID</th>
+            <td mat-cell *matCellDef="let scan">{{ scan.essid }}</td>
+          </ng-container>
+
+          <!-- BSSID Column -->
+          <ng-container matColumnDef="bssid">
+            <th mat-header-cell *matHeaderCellDef>BSSID</th>
+            <td mat-cell *matCellDef="let scan">{{ scan.bssid }}</td>
+          </ng-container>
+
+          <!-- Channel Column -->
+          <ng-container matColumnDef="channel">
+            <th mat-header-cell *matHeaderCellDef>Channel</th>
+            <td mat-cell *matCellDef="let scan">{{ scan.channel }}</td>
+          </ng-container>
+
+          <!-- Power Column -->
+          <ng-container matColumnDef="power">
+            <th mat-header-cell *matHeaderCellDef>Power</th>
+            <td mat-cell *matCellDef="let scan">{{ scan.avg_power }} dBm</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['essid', 'bssid', 'channel', 'power']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['essid', 'bssid', 'channel', 'power'];"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="data-card">
+      <mat-card-title>Recent Alerts</mat-card-title>
+      <mat-card-content>
+        <table mat-table [dataSource]="recentAlerts" class="mat-elevation-z8">
+          <!-- ESSID Column -->
+          <ng-container matColumnDef="essid">
+            <th mat-header-cell *matHeaderCellDef>SSID</th>
+            <td mat-cell *matCellDef="let alert">{{ alert.essid }}</td>
+          </ng-container>
+
+          <!-- BSSID Column -->
+          <ng-container matColumnDef="bssid">
+            <th mat-header-cell *matHeaderCellDef>BSSID</th>
+            <td mat-cell *matCellDef="let alert">{{ alert.bssid }}</td>
+          </ng-container>
+
+          <!-- Type Column -->
+          <ng-container matColumnDef="channel">
+            <th mat-header-cell *matHeaderCellDef>Channel</th>
+            <td mat-cell *matCellDef="let alert">{{ alert.channel }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['essid', 'bssid', 'channel']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['essid', 'bssid', 'channel'];"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

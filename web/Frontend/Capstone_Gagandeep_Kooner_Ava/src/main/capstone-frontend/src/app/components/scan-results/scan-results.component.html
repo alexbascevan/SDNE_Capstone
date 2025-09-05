@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-title>WiFi Scan Results</mat-card-title>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- ESSID Column -->
+      <ng-container matColumnDef="essid">
+        <th mat-header-cell *matHeaderCellDef>SSID</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.essid }}</td>
+      </ng-container>
+
+      <!-- BSSID Column -->
+      <ng-container matColumnDef="bssid">
+        <th mat-header-cell *matHeaderCellDef>BSSID</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.bssid }}</td>
+      </ng-container>
+
+      <!-- Channel Column -->
+      <ng-container matColumnDef="channel">
+        <th mat-header-cell *matHeaderCellDef>Channel</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.channel }}</td>
+      </ng-container>
+
+      <!-- Power Column -->
+      <ng-container matColumnDef="power">
+        <th mat-header-cell *matHeaderCellDef>Power</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.avg_power }} dBm</td>
+      </ng-container>
+
+      <!-- Auth Column -->
+      <ng-container matColumnDef="auth">
+        <th mat-header-cell *matHeaderCellDef>Auth</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.auth }}</td>
+      </ng-container>
+
+      <!-- Enc Column -->
+      <ng-container matColumnDef="enc">
+        <th mat-header-cell *matHeaderCellDef>Encryption</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.enc }}</td>
+      </ng-container>
+
+      <!-- Time Column -->
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef>Time</th>
+        <td mat-cell *matCellDef="let scan">{{ scan.scanned_at | date:'medium' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

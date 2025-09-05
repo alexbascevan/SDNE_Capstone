@@ -2,13 +2,22 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import sqlite3
 from datetime import datetime
+import os # Import the os module
 
 app = Flask(__name__)
 CORS(app)  # Allow requests from Spring Boot/Angular
-DB_PATH = "/home/gagan/SDNE_Capstone/scanner/wifi_scanner.db"
+
+# Get the users home directory regardless of device or where script is run from
+home_directory = os.path.expanduser('~')
+DB_PATH = os.path.join(home_directory, "SDNE_Capstone/db/wifi_scanner.db")
 
 # Helper function to fetch data from SQLite
 def query_db(query, args=()):
+    # Check if the database file exists before trying to connect
+    if not os.path.exists(DB_PATH):
+        print(f"Error: Database file not found at {DB_PATH}")
+        return []
+        
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute(query, args)
@@ -19,7 +28,7 @@ def query_db(query, args=()):
 # API Endpoints
 @app.route('/scans', methods=['GET'])
 def get_scans():
-    scans = query_db("SELECT * FROM scan_results ORDER BY scanned_at DESC LIMIT 100")
+    scans = query_db("SELECT * FROM scan_results ORDER BY scanned_at DESC")
     return jsonify([{
         "id": row[0],
         "essid": row[1],
@@ -34,7 +43,7 @@ def get_scans():
 
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
-    alerts = query_db("SELECT * FROM alerts ORDER BY detected_at DESC LIMIT 50")
+    alerts = query_db("SELECT * FROM alerts ORDER BY detected_at DESC")
     return jsonify([{
         "id": row[0],
         "essid": row[1],

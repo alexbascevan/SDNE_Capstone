@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 import json
 import os
 import argparse
@@ -9,15 +10,18 @@ import threading
 import sqlite3
 from datetime import datetime
 from scapy.all import *
+from pathlib import Path
 
+
+json_file = "/home/alexb/SDNE_Capstone/scanner/scan_results.json"
+alert_file = "/home/alexb/SDNE_Capstone/scanner/alert.json"
 ap_data = {}
-json_file = "scan_results.json"
-alert_file = "alert.json"
 alerts = []
 
+
 # ======================= DB Insert Functions =======================
-def insert_scan_result(essid, bssid, channel, avg_power, auth, enc, whitelist_id):
-    conn = sqlite3.connect('/home/noman/RAP_Scanner/wifi_scanner.db')
+def insert_scan_result(essid, bssid, channel, avg_power, auth, enc, whitelist_id=None):
+    conn = sqlite3.connect('/home/alexb/SDNE_Capstone/db/wifi_scanner.db')
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO scan_results (essid, bssid, channel, avg_power, auth, enc, scanned_at, whitelist_id)
@@ -26,8 +30,8 @@ def insert_scan_result(essid, bssid, channel, avg_power, auth, enc, whitelist_id
     conn.commit()
     conn.close()
 
-def insert_alert(essid, bssid, channel, avg_power, auth, enc, alert_type, whitelist_id):
-    conn = sqlite3.connect('/home/noman/RAP_Scanner/wifi_scanner.db')
+def insert_alert(essid, bssid, channel, avg_power, auth, enc, alert_type, whitelist_id=None):
+    conn = sqlite3.connect('/home/alexb/SDNE_Capstone/db/wifi_scanner.db')
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO alerts (essid, bssid, channel, avg_power, auth, enc, alert_type, detected_at, whitelist_id)
@@ -36,7 +40,6 @@ def insert_alert(essid, bssid, channel, avg_power, auth, enc, alert_type, whitel
     conn.commit()
     conn.close()
 
-# ======================= JSON Save Functions =======================
 def save_to_json():
     with open(json_file, "w") as f:
         json.dump(ap_data, f, indent=4)
@@ -110,19 +113,7 @@ def packet_handler(pkt, verbose, whitelist, live_alerts_only):
                 "auth": auth,
                 "pmf": pmf_str
             }
-
-            matched_whitelist_id = None
-            for entry in whitelist:
-                try:
-                    entry_essid, entry_bssid = entry.split(',')
-                    if (ssid == entry_essid and bssid == entry_bssid) or (ssid == "<Hidden>" and bssid == entry_bssid):
-                        matched_whitelist_id = f"{entry_essid},{entry_bssid}"
-                        break
-                except ValueError:
-                    continue
-
-            insert_scan_result(ssid, bssid, channel or 0, signal_strength or 0, auth, encryption, matched_whitelist_id)
-
+            insert_scan_result(ssid, bssid, channel or 0, signal_strength or 0, auth, encryption)
         else:
             ap_data[bssid]["beacons"] += 1
             if signal_strength not in ap_data[bssid]["pwr"]:
@@ -130,24 +121,14 @@ def packet_handler(pkt, verbose, whitelist, live_alerts_only):
             if channel and channel not in ap_data[bssid]["channel"]:
                 ap_data[bssid]["channel"].append(channel)
 
-        whitelisted = False
-        matched_whitelist_id = None
-        for entry in whitelist:
-            try:
-                entry_essid, entry_bssid = entry.split(',')
-                if (ssid == entry_essid and bssid == entry_bssid) or (ssid == "<Hidden>" and bssid == entry_bssid):
-                    whitelisted = True
-                    matched_whitelist_id = f"{entry_essid},{entry_bssid}"
-                    break
-            except ValueError:
-                continue
+        whitelisted = any((ssid == w.split(',')[0] and bssid == w.split(',')[1]) for w in whitelist)
 
         if not whitelisted:
             if not any(alert.get('bssid') == bssid for alert in alerts):
                 alert_data = ap_data[bssid].copy()
                 alert_data["alert_type"] = "Not Whitelisted"
                 alerts.append(alert_data)
-                insert_alert(ssid, bssid, channel or 0, signal_strength or 0, auth, encryption, "Not Whitelisted", matched_whitelist_id)
+                insert_alert(ssid, bssid, channel or 0, signal_strength or 0, auth, encryption, "Not Whitelisted")
 
 # ======================= Display Functions =======================
 def print_ap_data_table(ap_data):

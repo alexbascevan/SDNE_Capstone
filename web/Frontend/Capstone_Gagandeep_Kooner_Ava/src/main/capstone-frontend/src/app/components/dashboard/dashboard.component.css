@@ -1,0 +1,28 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  width: 45%;
+  text-align: center;
+}
+
+.recent-data-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.data-card {
+  width: 45%;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}
