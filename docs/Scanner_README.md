@@ -69,3 +69,6 @@ Where `<interface>` is the network interface to use for scanning (e.g., `wlan0`,
     ```bash
     python scan.py wlan0 -d 10 -L
     ```
+
+To run scanner with AWS:
+sudo -E python3 scan.py wlxcc641aeb88ac -d 99999999
