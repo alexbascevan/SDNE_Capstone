@@ -10,7 +10,7 @@ sudo systemctl enable ssh
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
 
 # Install required packages
-sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools zsh fastfetch locate python3-pip sqlite3 
+sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-boto3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools zsh fastfetch locate python3-pip sqlite3 
 
 # Install BrosTrend Wi-Fi adapter driver
 sh -c 'wget linux.brostrend.com/install -O /tmp/install && sh /tmp/install'
@@ -82,29 +82,5 @@ sudo iw dev <adapter name> set type monitor
 
 # Bring the interface up
 sudo ip link set <adapter name> up
-
-touch ~/runscanner.sh
-echo "#!/bin/bash
-
-#This script runs the WiFi scanner in the background and then
-
-#starts the Flask API in the foreground.
-#Check if the user is in their home directory
-if [ "$PWD" != "$HOME" ]; then
-echo "Please run this script from your home directory."
-exit 1
-fi
-
-#Run the scanner script in the background using the correct path
-sudo python3 ~/SDNE_Capstone/scanner/scan.py wlxcc641aeb88ac -d 9999999&
-
-#Wait a moment to ensure the background process starts
-sleep 2
-
-#Run the Flask API in the foreground
-python3 ~/SDNE_Capstone/web/scannerAPI.py" > ~/runscanner.sh
-
-# After running this, when you type runScanner from the home directory, it will start the scanner and API
-chmod +x ~/runscanner.sh
 
 sudo mv runScanner.sh /usr/local/bin/runScanner

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 import json
 import os
 import argparse
@@ -10,14 +9,42 @@ import threading
 import sqlite3
 from datetime import datetime
 from scapy.all import *
-from pathlib import Path
 
+import signal
+import sys
+
+# === AWS S3 Configuration ===
+import boto3
+
+S3_BUCKET_NAME = 'capstone-2025-wifi-scanner-data'
+S3_OBJECT_KEY = 'wifi_scan.db'
+LOCAL_DB_FILE = '/home/alexb/SDNE_Capstone/db/wifi_scanner.db'
+# ============================
 
 json_file = "/home/alexb/SDNE_Capstone/scanner/scan_results.json"
 alert_file = "/home/alexb/SDNE_Capstone/scanner/alert.json"
 ap_data = {}
 alerts = []
 
+# ======================= S3 Upload Function =======================
+def upload_db_to_s3():
+    """
+    Uploads the local DB file to the S3 bucket.
+    """
+    try:
+        print("Uploading DB file to S3...")
+        s3_client = boto3.client('s3')
+        s3_client.upload_file(LOCAL_DB_FILE, S3_BUCKET_NAME, S3_OBJECT_KEY)
+        print("Upload successful.")
+    except Exception as e:
+        print(f"Error uploading file to S3: {e}")
+
+
+# === Signal Handling for graceful exit ===
+def signal_handler(sig, frame):
+    print('\nExiting gracefully...')
+    sys.exit(0)
+# =======================================
 
 # ======================= DB Insert Functions =======================
 def insert_scan_result(essid, bssid, channel, avg_power, auth, enc, whitelist_id=None):
@@ -153,6 +180,10 @@ def print_alerts_table(alerts):
 
 # ======================= Main =======================
 def main():
+
+     # Register the signal handler
+    signal.signal(signal.SIGINT, signal_handler)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("iface")
     parser.add_argument("-c", "--channel", type=int)
@@ -176,6 +207,9 @@ def main():
 
     while time.time() - start < args.duration:
         sniff(iface=args.iface, prn=lambda pkt: packet_handler(pkt, args.verbose, whitelist, args.live_alerts_only), store=False, timeout=1)
+
+        # After each 5-second sniff period, upload the updated DB
+        upload_db_to_s3()
 
         if args.live_updates:
             os.system("clear")
