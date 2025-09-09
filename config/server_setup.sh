@@ -53,10 +53,8 @@ git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 
 # Setup Capstone repository
-mkdir Capstone
-cd Capstone
-git init
-git pull https://github.com/alexbascevan/SDNE_Capstone.git
+git clone https://github.com/alexbascevan/SDNE_Capstone.git
+git checkout -b new-feature (rename it to whatever you are working on
 
 # Update file databases
 sudo updatedb
