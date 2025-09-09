@@ -11,9 +11,10 @@ sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo
 sudo reboot now
 
 # Install required packages
-sudo add-apt-repository ppa:fastfetch-devs/fastfetch
-sudo apt update -y
-sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-boto3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools zsh fastfetch locate python3-pip sqlite3 
+
+sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh net-tools wireless-tools zsh neofetch locate sqlite3
+
+sudo apt install -y python3 python3-boto3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests python3-pip
 
 # Install BrosTrend Wi-Fi adapter driver
 sh -c 'wget linux.brostrend.com/install -O /tmp/install && sh /tmp/install'
@@ -41,7 +42,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 # Configure and reload .zshrc
-echo -e "# Enable fastfetch\nfastfetch\n\n# Enable Powerlevel10k instant prompt\n# Initialization code that may require console input\nif [[ -r \"\${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then\n  source \"\${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\"\nfi\n\n# Zsh configuration\nexport ZSH=\"\$HOME/.oh-my-zsh\"\nZSH_THEME=\"powerlevel10k/powerlevel10k\"\nplugins=(git zsh-autosuggestions zsh-syntax-highlighting)\nsource \$ZSH/oh-my-zsh.sh" | sudo tee /home/$USER/.zshrc > /dev/null
+echo -e "# Enable neofetchfetch\nneofetch\n\n# Enable Powerlevel10k instant prompt\n# Initialization code that may require console input\nif [[ -r \"\${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\" ]]; then\n  source \"\${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh\"\nfi\n\n# Zsh configuration\nexport ZSH=\"\$HOME/.oh-my-zsh\"\nZSH_THEME=\"powerlevel10k/powerlevel10k\"\nplugins=(git zsh-autosuggestions zsh-syntax-highlighting)\nsource \$ZSH/oh-my-zsh.sh" | sudo tee /home/$USER/.zshrc > /dev/null
 source ~/.zshrc
 
 # Disable motd-news service
