@@ -11,6 +11,8 @@ sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo
 sudo reboot now
 
 # Install required packages
+sudo add-apt-repository ppa:fastfetch-devs/fastfetch
+sudo apt update -y
 sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-boto3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools zsh fastfetch locate python3-pip sqlite3 
 
 # Install BrosTrend Wi-Fi adapter driver
