@@ -20,10 +20,6 @@ sudo ip link set <adapter name> up
 sudo ip addr add 192.168.1.100/24 dev <adapter name>
 sudo ip link set <adapter name> down
 
-# Configure static IP in dhcpcd.conf
-echo -e "\n# Static IP configuration for interface <adapter name>\ninterface <adapter name>\nstatic ip_address=192.168.1.100/24\nstatic routers=192.168.1.1\nstatic domain_name_servers=8.8.8.8 8.8.4.4" | sudo tee -a /etc/dhcpcd.conf > /dev/null
-sudo systemctl restart dhcpcd
-
 # Create systemd service to set Wi-Fi adapter to monitor mode
 echo -e "[Unit]\nDescription=Set Wi-Fi adapter to monitor mode\nAfter=network.target\n\n[Service]\nType=oneshot\nExecStartPre=/bin/sleep 5\nExecStartPre=/sbin/ip link set <adapter name> down\nExecStartPre=/bin/sleep 2\nExecStartPre=/usr/sbin/iw dev <adapter name> set type monitor\nExecStart=/sbin/ip link set <adapter name> up\nRemainAfterExit=yes\n\n[Install]\nWantedBy=multi-user.target" | sudo tee /etc/systemd/system/wifi-monitor.service > /dev/null
 
@@ -71,7 +67,6 @@ sudo reboot now
 # Confirm Monitor Mode is active after reboot
 
 iw dev <adapter name> info
-
 
 # If having errors with script setting wifi adapter to monitor mode, run these manually. Be sure to update the adapter name to your specific adapter.
 # Bring the interface down
