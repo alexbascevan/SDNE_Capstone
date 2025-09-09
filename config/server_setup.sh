@@ -11,7 +11,7 @@ sudo apt update -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo
 sudo reboot now
 
 # Install required packages
-sudo apt install -y dhcpcd5 iw build-essential libssl-dev libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-boto3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools zsh fastfetch locate python3-pip sqlite3 
+sudo apt install -y dhcpcd5 iw build-essential libssl-dev iw libpcap-dev pkg-config zlib1g-dev autoconf git-all gh python3 python3-boto3 python3-flask-cors python3-scapy python3-numpy python3-flask python3-requests net-tools wireless-tools zsh fastfetch locate python3-pip sqlite3 
 
 # Install BrosTrend Wi-Fi adapter driver
 sh -c 'wget linux.brostrend.com/install -O /tmp/install && sh /tmp/install'
