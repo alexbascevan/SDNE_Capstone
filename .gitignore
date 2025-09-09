@@ -1,6 +1,10 @@
 # Ignore all .txt files
 *.txt
 
+# Ignore database and data files
+*.json
+*.db
+
 # Ignore Mac system files
 .DS_Store
 
@@ -55,4 +59,3 @@ __pycache__/
 venv/
 .env/
 env/
-
