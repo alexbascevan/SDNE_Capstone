@@ -7,6 +7,7 @@ import time
 import struct
 import threading
 import sqlite3
+import shutil
 from datetime import datetime
 from scapy.all import *
 
@@ -17,8 +18,13 @@ import sys
 import boto3
 
 S3_BUCKET_NAME = 'capstone-2025-wifi-scanner-data'
-S3_OBJECT_KEY = 'wifi_scan.db'
+S3_DB_KEY = 'wifi_scan.db'
+S3_SCANS_KEY = 'scan_results.json'
+S3_ALERTS_KEY = 'alerts.json'
+
 LOCAL_DB_FILE = '/home/alexb/SDNE_Capstone/db/wifi_scanner.db'
+LOCAL_SCANS_FILE = '/home/alexb/SDNE_Capstone/scanner/scan_results.json'
+LOCAL_ALERTS_FILE = '/home/alexb/SDNE_Capstone/scanner/alert.json'
 # ============================
 
 json_file = "/home/alexb/SDNE_Capstone/scanner/scan_results.json"
@@ -27,20 +33,29 @@ ap_data = {}
 alerts = []
 
 # ======================= S3 Upload Function =======================
-def upload_db_to_s3():
+def upload_file_safely_to_s3(local_file_path, s3_object_key):
     """
-    Uploads the local DB file to the S3 bucket.
+    Copies the local file to a temporary location and uploads it to S3.
+    This prevents race conditions with concurrent file writes.
     """
+    temp_file_path = f"{local_file_path}.temp"
     try:
-        print("Uploading DB file to S3...")
+        # Create a clean copy of the file for upload
+        shutil.copyfile(local_file_path, temp_file_path)
+        
         s3_client = boto3.client('s3')
-        s3_client.upload_file(LOCAL_DB_FILE, S3_BUCKET_NAME, S3_OBJECT_KEY)
-        print("Upload successful.")
+        s3_client.upload_file(temp_file_path, S3_BUCKET_NAME, s3_object_key)
+        print(f"Upload successful for {s3_object_key}.")
+    except FileNotFoundError:
+        print(f"Warning: File not found at {local_file_path}. Skipping upload.")
     except Exception as e:
-        print(f"Error uploading file to S3: {e}")
+        print(f"Error uploading {os.path.basename(local_file_path)} file to S3: {e}")
+    finally:
+        # Clean up the temporary file
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
 
-
-# === Signal Handling for graceful exit ===
+# ======================= Signal Handling for graceful exit =======================
 def signal_handler(sig, frame):
     print('\nExiting gracefully...')
     sys.exit(0)
@@ -181,7 +196,7 @@ def print_alerts_table(alerts):
 # ======================= Main =======================
 def main():
 
-     # Register the signal handler
+    # Register the signal handler
     signal.signal(signal.SIGINT, signal_handler)
 
     parser = argparse.ArgumentParser()
@@ -208,8 +223,10 @@ def main():
     while time.time() - start < args.duration:
         sniff(iface=args.iface, prn=lambda pkt: packet_handler(pkt, args.verbose, whitelist, args.live_alerts_only), store=False, timeout=1)
 
-        # After each 5-second sniff period, upload the updated DB
-        upload_db_to_s3()
+        # After each 5-second sniff period, upload the updated files
+        upload_file_safely_to_s3(LOCAL_DB_FILE, S3_DB_KEY)
+        upload_file_safely_to_s3(LOCAL_ALERTS_FILE, S3_ALERTS_KEY)
+        upload_file_safely_to_s3(LOCAL_SCANS_FILE, S3_SCANS_KEY)
 
         if args.live_updates:
             os.system("clear")
