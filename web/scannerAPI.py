@@ -1,79 +1,129 @@
-import json
-import logging
 import os
-import sys
-from flask import Flask, jsonify
+import sqlite3 
 import boto3
-from botocore.exceptions import NoCredentialsError, ClientError
+from flask import Flask, jsonify
+from flask_cors import CORS
+from datetime import datetime
+import tempfile 
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# --- Configuration and Setup ---
 
 app = Flask(__name__)
+CORS(app) # Allow requests from Spring Boot/Angular
 
-# --- BUCKET NAME RETRIEVAL ---
-# AWS credentials will be automatically handled by the EC2 Instance Role.
-bucket_name = os.getenv('S3_BUCKET_NAME')
+# AWS S3 Configuration
+S3_BUCKET_NAME = 'capstone-2025-wifi-scanner-data'
+S3_DB_KEY = 'wifi_scan.db'
+LOCAL_DB_PATH = os.path.join(tempfile.gettempdir(), S3_DB_KEY) # Use a temporary directory for the DB file
 
-if not bucket_name:
-    logger.error("Error: S3_BUCKET_NAME environment variable is not set. The application cannot connect to S3.")
-    # Exit with a non-zero status code if configuration is missing
-    sys.exit(1) 
-
-# Initialize S3 client. Boto3 will automatically look for the EC2 role credentials.
+# Initialize a boto3 S3 client
 s3_client = boto3.client('s3')
 
-def get_most_recent_scans():
-    scans = []
-    alerts = []
-    
-    try:
-        # Check if the bucket exists and we have permissions by attempting to list objects.
-        s3_client.list_objects_v2(Bucket=bucket_name, MaxKeys=1)
-        
-        # 1. Fetch Scan Results
-        try:
-            obj_scans = s3_client.get_object(Bucket=bucket_name, Key='scan_results.json')
-            scans = json.loads(obj_scans['Body'].read())
-        except ClientError as e:
-            # A 404 error here is expected if the file doesn't exist yet, but still log it.
-            logger.error(f"Error fetching scan_results.json: {e}")
-        
-        # 2. Fetch Alerts
-        try:
-            obj_alerts = s3_client.get_object(Bucket=bucket_name, Key='alerts.json')
-            alerts = json.loads(obj_alerts['Body'].read())
-        except ClientError as e:
-            logger.error(f"Error fetching alerts.json: {e}")
+# --- Helper Functions ---
 
-    except (NoCredentialsError, ClientError, json.JSONDecodeError) as e:
-        # This catch handles connection errors, including any persistent 403 Forbidden errors.
-        logger.error(f"Error connecting to S3 or decoding JSON: {e}")
-        return [], []
-    
-    return scans, alerts
+def download_db_from_s3():
+    """Downloads the SQLite DB file from S3 to the local EC2 filesystem."""
+    print(f"Attempting to download {S3_DB_KEY} from S3 bucket {S3_BUCKET_NAME} to {LOCAL_DB_PATH}...")
+    try:
+        # Download the file
+        s3_client.download_file(S3_BUCKET_NAME, S3_DB_KEY, LOCAL_DB_PATH)
+        print("Database file downloaded successfully.")
+        return True
+    except Exception as e:
+        print(f"Error downloading DB file from S3: {e}")
+        return False
+
+def query_db(query, args=()):
+    """
+    Connects to the local SQLite DB, executes a query, fetches results, and closes the connection.
+    Assumes the DB file is already downloaded to LOCAL_DB_PATH.
+    """
+    conn = None
+    results = []
+    try:
+        # Establish connection to the local DB file
+        conn = sqlite3.connect(LOCAL_DB_PATH)
+        conn.row_factory = sqlite3.Row # Allows accessing columns by name
+        cur = conn.cursor()
+        # Execute the query
+        cur.execute(query, args)
+        results = cur.fetchall()
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        results = []
+    finally:
+        # Ensure the connection is closed
+        if conn:
+            conn.close()
+    # Return a list of row objects
+    return results
+
+def get_scans_data():
+    """Queries and formats scan results from the database."""
+    # Execute the SQL query
+    scans = query_db("SELECT id, essid, bssid, channel, avg_power, auth, enc, scanned_at, whitelist_id FROM scan_results ORDER BY scanned_at DESC LIMIT 100")
+
+    # Format the results into a list of dictionaries
+    return [{
+        "id": row['id'],
+        "essid": row['essid'],
+        "bssid": row['bssid'],
+        "channel": row['channel'],
+        "avg_power": row['avg_power'],
+        "auth": row['auth'],
+        "enc": row['enc'],
+        "scanned_at": row['scanned_at'],
+        "whitelist_id": row['whitelist_id']
+    } for row in scans]
+
+def get_alerts_data():
+    """Queries and formats alerts from the database."""
+    # Execute the SQL query
+    alerts = query_db("SELECT id, essid, bssid, channel, avg_power, auth, enc, alert_type, detected_at, whitelist_id FROM alerts ORDER BY detected_at DESC LIMIT 50")
+
+    # Format the results into a list of dictionaries
+    return [{
+        "id": row['id'],
+        "essid": row['essid'],
+        "bssid": row['bssid'],
+        "channel": row['channel'],
+        "avg_power": row['avg_power'],
+        "auth": row['auth'],
+        "enc": row['enc'],
+        "alert_type": row['alert_type'],
+        "detected_at": row['detected_at'],
+        "whitelist_id": row['whitelist_id']
+    } for row in alerts]
+
+# --- API Endpoints ---
+
+@app.before_request
+def before_request_check():
+    """Hook to ensure the database file is downloaded before any request that needs it."""
+    # Check if the DB file exists locally or if the download fails
+    if not os.path.exists(LOCAL_DB_PATH) or (datetime.now().minute % 5 == 0 and datetime.now().second < 5): # Simple check to periodically re-download every 5 minutes
+        # Attempt to download the latest version
+        if not download_db_from_s3():
+
+            print("Could not download DB file from S3. Proceeding with potentially stale data or empty results.")
+    pass # Continue to the route handler
 
 @app.route('/scans', methods=['GET'])
 def get_scans():
-    scans, _ = get_most_recent_scans()
+    """Fetches scan results from the local DB (pulled from S3) and returns them as a JSON response."""
+    scans = get_scans_data()
     return jsonify(scans)
 
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
-    _, alerts = get_most_recent_scans()
-    return jsonify(alerts)
-
-@app.route('/scans/latest', methods=['GET'])
-def get_latest_scans():
-    scans, _ = get_most_recent_scans()
-    return jsonify(scans)
-
-@app.route('/alerts/latest', methods=['GET'])
-def get_latest_alerts():
-    _, alerts = get_most_recent_scans()
+    """Fetches alerts from the local DB (pulled from S3) and returns them as a JSON response."""
+    alerts = get_alerts_data()
     return jsonify(alerts)
 
 
+# --- Application Run ---
 if __name__ == '__main__':
+
+    download_db_from_s3()
+
     app.run(host='0.0.0.0', port=5000)
