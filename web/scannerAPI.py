@@ -1,10 +1,10 @@
 import os
-import sqlite3 # New import for SQLite
+import sqlite3 
 import boto3
 from flask import Flask, jsonify
 from flask_cors import CORS
 from datetime import datetime
-import tempfile # New import for temporary file handling
+import tempfile
 
 # --- Configuration and Setup ---
 
