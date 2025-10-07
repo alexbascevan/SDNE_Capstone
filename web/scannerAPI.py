@@ -1,10 +1,10 @@
 import os
-import sqlite3 
+import sqlite3 # New import for SQLite
 import boto3
 from flask import Flask, jsonify
 from flask_cors import CORS
 from datetime import datetime
-import tempfile 
+import tempfile # New import for temporary file handling
 
 # --- Configuration and Setup ---
 
@@ -58,42 +58,6 @@ def query_db(query, args=()):
     # Return a list of row objects
     return results
 
-def get_scans_data():
-    """Queries and formats scan results from the database."""
-    # Execute the SQL query
-    scans = query_db("SELECT id, essid, bssid, channel, avg_power, auth, enc, scanned_at, whitelist_id FROM scan_results ORDER BY scanned_at DESC LIMIT 100")
-
-    # Format the results into a list of dictionaries
-    return [{
-        "id": row['id'],
-        "essid": row['essid'],
-        "bssid": row['bssid'],
-        "channel": row['channel'],
-        "avg_power": row['avg_power'],
-        "auth": row['auth'],
-        "enc": row['enc'],
-        "scanned_at": row['scanned_at'],
-        "whitelist_id": row['whitelist_id']
-    } for row in scans]
-
-def get_alerts_data():
-    """Queries and formats alerts from the database."""
-    # Execute the SQL query
-    alerts = query_db("SELECT id, essid, bssid, channel, avg_power, auth, enc, alert_type, detected_at, whitelist_id FROM alerts ORDER BY detected_at DESC LIMIT 50")
-
-    # Format the results into a list of dictionaries
-    return [{
-        "id": row['id'],
-        "essid": row['essid'],
-        "bssid": row['bssid'],
-        "channel": row['channel'],
-        "avg_power": row['avg_power'],
-        "auth": row['auth'],
-        "enc": row['enc'],
-        "alert_type": row['alert_type'],
-        "detected_at": row['detected_at'],
-        "whitelist_id": row['whitelist_id']
-    } for row in alerts]
 
 # --- API Endpoints ---
 
@@ -110,15 +74,34 @@ def before_request_check():
 
 @app.route('/scans', methods=['GET'])
 def get_scans():
-    """Fetches scan results from the local DB (pulled from S3) and returns them as a JSON response."""
-    scans = get_scans_data()
-    return jsonify(scans)
+    scans = query_db("SELECT * FROM scan_results ORDER BY scanned_at DESC LIMIT 100")
+    return jsonify([{
+        "id": row[0],
+        "essid": row[1],
+        "bssid": row[2],
+        "channel": row[3],
+        "avg_power": row[4],
+        "auth": row[5],
+        "enc": row[6],
+        "scanned_at": row[7],
+        "whitelist_id": row[8]
+    } for row in scans])
 
 @app.route('/alerts', methods=['GET'])
 def get_alerts():
-    """Fetches alerts from the local DB (pulled from S3) and returns them as a JSON response."""
-    alerts = get_alerts_data()
-    return jsonify(alerts)
+    alerts = query_db("SELECT * FROM alerts ORDER BY detected_at DESC LIMIT 50")
+    return jsonify([{
+        "id": row[0],
+        "essid": row[1],
+        "bssid": row[2],
+        "channel": row[3],
+        "avg_power": row[4],
+        "auth": row[5],
+        "enc": row[6],
+        "alert_type": row[7],
+        "detected_at": row[8],
+        "whitelist_id": row[9]
+    } for row in alerts])
 
 
 # --- Application Run ---
